@@ -126,14 +126,17 @@ fun LoginScreen(
                 .padding(bottom = 50.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
             when (loginViewModel.loginUiState) {
-                is LoginUiState.Init -> {}
                 is LoginUiState.Loading -> CircularProgressIndicator()
-                is LoginUiState.RegisterSuccess -> Text(text = "Register OK")
-                is LoginUiState.LoginSuccess -> Text(text = "Login OK")
+                is LoginUiState.RegisterSuccess -> Text(text = "Registration successful")
+                is LoginUiState.LoginSuccess -> Text(text = "Login successful")
                 is LoginUiState.Error -> Text(
-                    text = "Error: ${(loginViewModel.loginUiState as LoginUiState.Error).error }")
+                    text = "Error: ${
+                        (loginViewModel.loginUiState as LoginUiState.Error).error
+                    }"
+                )
+                is LoginUiState.LoginSuccess -> {}
+                LoginUiState.Init -> {}
             }
         }
     }

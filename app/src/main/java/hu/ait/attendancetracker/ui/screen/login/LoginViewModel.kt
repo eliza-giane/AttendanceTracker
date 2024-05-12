@@ -51,7 +51,6 @@ class LoginViewModel : ViewModel() {
             return null
         }
     }
-
 }
 
 sealed interface LoginUiState {

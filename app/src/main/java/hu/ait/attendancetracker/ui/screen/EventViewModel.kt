@@ -33,7 +33,7 @@ package hu.ait.attendancetracker.ui.screen
 //           } catch (e: Exception) {
 //              _uiState.value = EventUiState.Error(e.message ?: "Unknown error")
 //           }
-      }
+//      }
 //
 //    }
 

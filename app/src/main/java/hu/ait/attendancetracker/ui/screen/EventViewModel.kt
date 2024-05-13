@@ -11,8 +11,7 @@ package hu.ait.attendancetracker.ui.screen
 //import kotlinx.coroutines.flow.first
 //import kotlinx.coroutines.launch
 //import javax.inject.Inject
-//
-//@HiltViewModel
+
 //class EventViewModel: ViewModel(){
 //    private val db = FirebaseFirestore.getInstance()
 //    private val storage= FirebaseStorage.getInstance()
@@ -33,60 +32,42 @@ package hu.ait.attendancetracker.ui.screen
 //           } catch (e: Exception) {
 //              _uiState.value = EventUiState.Error(e.message ?: "Unknown error")
 //           }
-      }
-//
-//    }
+        }
+//  }
 
-//        viewModelScope.launch {
-//            _editableItem.value = if (itemId != -1) {
-//                repository.getItemByIdFlow(itemId).first()
-//            } else {
-//                null
-//            }
-//        }
+//       
+//    private suspend fun uploadImageToStorage(imageUri: Uri): String {
+//        val imageRef = storage.reference.child("event_images/${System.currentTimeMillis()}.jpg")
+ //       val uploadTask = imageRef.putFile(imageUri).await()
+//        return imageRef.downloadUrl.await().toString()
 //    }
 //
-//    fun deleteItem(item: ShoppingItem) {
-//        viewModelScope.launch {
-//            repository.deleteItem(item)
-//        }
-//    }
-//
-//    fun deleteAllItems() {
-//        viewModelScope.launch {
-//            repository.deleteAllItems()
-//        }
-//    }
-//
-//    fun searchItems(name: String): Flow<List<ShoppingItem>> {
-//        return repository.searchItems(name)
-//    }
-//
-//    fun filterItemsByPrice(minPrice: Float, maxPrice: Float): Flow<List<ShoppingItem>> {
-//        return repository.filterItemsByPrice(minPrice, maxPrice)
-//    }
-//
-//    fun filterItemsByCategory(category: String): Flow<List<ShoppingItem>> {
-//        return repository.filterItemsByCategory(category)
-//    }
-//
-//    // Total price of all items in the shopping list
-//    val totalPrice: Flow<Float> = repository.getTotalPrice()
-//
-//    fun setEditableItem(item: ShoppingItem?) {
-//        _editableItem.value = item
-//    }
-//
-//    fun addItem(item: ShoppingItem) {
-//        viewModelScope.launch {
-//            repository.insertItem(item)
-//        }
-//    }
-//
-//    fun updateItem(item: ShoppingItem) {
-//        viewModelScope.launch {
-//            repository.updateItem(item)
-//        }
-//    }
-//
+//  fun fetchEvents(){
+//   _uiState.value=EventUiState.loading
+//  viewModelScope.launch{
+//    val snapshot = db.collection("events").get().await()
+//              val events = snapshot.toObjects(Event::class.java)
+//                _uiState.value = EventUiState.EventsLoaded(events)
+//          } catch (e: Exception) {
+//              _uiState.value = EventUiState.Error(e.message ?: "Unknown error")
+//          }
+//       }
+ //   }
+//   }
+
+//data class Event(
+//    val title: String,
+ //   val date: String,
+//    val location: String,
+//    val imageUrl: String? = null
+//   )
+
+//   sealed class EventUiState {
+ //    object Empty : EventUiState()
+ //   object Loading : EventUiState()
+ //    data class Success(val event: Event? = null) : EventUiState()
+ //   data class EventsLoaded(val events: List<Event>) : EventUiState()
+ //   data class Error(val message: String) : EventUiState()
 //}
+
+

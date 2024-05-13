@@ -3,6 +3,7 @@ package hu.ait.attendancetracker.ui.screen.messages
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -20,6 +21,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -39,7 +41,8 @@ import hu.ait.attendancetracker.data.Post
 @Composable
 fun MessagesScreen(
     messagesViewModel: MessagesViewModel = viewModel(),
-    onWritePost: ()->Unit = {}
+    onWritePost: ()->Unit = {},
+    onViewPost: ()->Unit = {}
 ) {
     val postListState = messagesViewModel.postsList().collectAsState(
         initial = MessagesUIState.Init)
@@ -91,12 +94,13 @@ fun MessagesScreen(
                 // show messages in a list...
                 LazyColumn() {
                     items((postListState.value as MessagesUIState.Success).postList){
-                        Text(text = it.post.title)
+//                        Text(text = it.post.title)
                         PostCard(post = it.post,
                             onRemoveItem = {
                                 messagesViewModel.deletePost(it.postId)
                             },
-                            currentUserId = FirebaseAuth.getInstance().uid!!
+                            currentUserId = FirebaseAuth.getInstance().uid!!,
+                            onViewPost
                         )
                     }
                 }
@@ -115,7 +119,8 @@ fun MessagesScreen(
 fun PostCard(
     post: Post,
     onRemoveItem: () -> Unit = {},
-    currentUserId: String = ""
+    currentUserId: String = "",
+    onViewPost: ()->Unit = {}
 ) {
     Card(
         colors = CardDefaults.cardColors(
@@ -145,10 +150,23 @@ fun PostCard(
                     Text(
                         text = post.date,
                     )
+                    Text(
+                        text = post.location,
+                    )
+
+                    // display map here
                 }
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
+                    IconButton(
+                        onClick = {
+                            onViewPost()
+                        }
+                    ) {
+                        Icon(Icons.Filled.Info, contentDescription = "Info")
+                    }
+
                     if (currentUserId.equals(post.uid)) {
                         Icon(
                             imageVector = Icons.Filled.Delete,

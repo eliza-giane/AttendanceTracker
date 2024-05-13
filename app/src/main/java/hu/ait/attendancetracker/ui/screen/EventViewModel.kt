@@ -13,15 +13,30 @@ package hu.ait.attendancetracker.ui.screen
 //import javax.inject.Inject
 //
 //@HiltViewModel
-//class MainViewModel @Inject constructor(
-//    private val repository: ShoppingListRepository
-//) : ViewModel() {
+//class EventViewModel: ViewModel(){
+//    private val db = FirebaseFirestore.getInstance()
+//    private val storage= FirebaseStorage.getInstance()
+//    
+//    private val _UiState= MutableStateFlow<EventUiState>(EventUiState.Empty)
+//    val uiState: StateFlow<EventUiState> = _uiState
+
 //
-//    val allItems: Flow<List<ShoppingItem>> = repository.getAllItems()
-//    private val _editableItem = MutableStateFlow<ShoppingItem?>(null)
-//    val editableItem: StateFlow<ShoppingItem?> = _editableItem.asStateFlow()
 //
-//    fun loadItemById(itemId: Int) {
+//    fun addEvent(title:String, date:String, location: String, imageUri: Uri?){
+//    _uiState.value= EventUiState.loading
+//    viewModelScope.launch{
+//        try{
+//         val imageUrl= imageUri?.let{ uploadImageToStorage(it)}
+//       val event = Event(title, date, location, imageUrl)
+//              db.collection("events").add(event).await()
+//                _uiState.value = EventUiState.Success
+//           } catch (e: Exception) {
+//              _uiState.value = EventUiState.Error(e.message ?: "Unknown error")
+//           }
+      }
+//
+//    }
+
 //        viewModelScope.launch {
 //            _editableItem.value = if (itemId != -1) {
 //                repository.getItemByIdFlow(itemId).first()

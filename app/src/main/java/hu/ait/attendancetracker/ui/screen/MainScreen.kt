@@ -54,7 +54,7 @@ package hu.ait.attendancetracker.ui.screen
 //                    }
 //
 //                    IconButton(onClick = {
-//                        viewModel.deleteAllItems()
+//                        viewModel.deleteAllEvents()
 //                    }) {
 //                        Icon(Icons.Filled.Delete, null)
 //                    }
@@ -69,296 +69,117 @@ package hu.ait.attendancetracker.ui.screen
 //        content = {
 //            Column(modifier = Modifier.padding(it)) {
 //                if (showDialog) {
-//                    AddItemDialog(
+//                    AddEventDialog(
 //                        onDismissRequest = { showDialog = false }
-//                    ) { title, date, location ->
-//                        try {
-//                            val priceValue = location.toFloat()
-//                            val newItem = Post(
-//                                uid = "",
-//                                author = "",
-//                                title = title,
-//                                var date : String = "",
-//                            var location: String = ""
-//                            name = title,
-//                            date = date,
-//                            location = priceValue,
-//                            category = category,
-//                            bought = false
-//                            )
-//                            viewModel.addItem(newItem)
-//                            showDialog = false
-//                        } catch (e: NumberFormatException) {
-//                            errorMessage = "Please enter a valid price."
-//                            showError = true
-//                        }
-//                    }
-//                }
-//
-//                if (showError) {
-//                    Text(text = errorMessage, color = Color.Red)
-//                }
-//            }
-//
-//            ShoppingListContent(
-//                Modifier.padding(it), viewModel)
-//
-//        }
-//    )
-//}
+//                        onSubmit={ title, date, location ->
+//                           viewModel.addEvent(title, date,location)
+//                           showDialog= false
+//                  }
+//            )
+//    }
+//                           
+//       if(showError){
+//             Text(text=errorMessage,color=Color.Red)
+//  }
+//  EventListContent(
+//   modifier= Modifier.padding(it),
+//   viewModel= viewModel
+//   )                            
 //
 //@Composable
-//fun ShoppingListContent(
+//fun EventListContent(
 //    modifier: Modifier,
 //    mainViewModel: MainViewModel
 //) {
-//    val shoppingItemList by mainViewModel.allItems.collectAsState(emptyList())
-//
-//    //var todoToEdit: TodoItem? by rememberSaveable {
-//    //    mutableStateOf(null)
-//    //}
-//    var showEditTodoDialog by rememberSaveable {
-//        mutableStateOf(false)
-//    }
-//
-//    Column(
-//        modifier = modifier
-//    ) {
-//        // show TodoItems from the ViewModel in a LayzColumn
-//        if (shoppingItemList.isEmpty()) {
-//            Text(text = "No items")
-//        } else {
-//            LazyVerticalGrid(
-//                columns = 2,
-//                modifier = Modifier.fillMaxSize()
-//            ) {
-//                items(shoppingItemList) {
-//                    ShoppingCard(it,
-//                        onEditItem = {},
-//                        onRemoveItem = {mainViewModel.deleteItem(it)})
-//                }
-//            }
-//
-//            if (showEditTodoDialog) {
-//                //AddNewTodoDialog(todoViewModel = todoViewModel,
-//                //    todoToEdit = todoToEdit,
-//                //) {
-//                //    showEditTodoDialog = false
-//                //}
+//    val eventList by viewModel.allEvents.collectAsState(initial=emptyList())
+//    
+//   if (eventList.isEmpty()){
+//       Text(text="No events")
+// }else {
+//        LazyColumn(modifier=modifier){
+//             items(eventList){ event ->
+//                EventCard(
+//                   event=event,
+//                   onRemoveEvent= { viewModel.deleteEvent(event.id) }
+//                )
 //            }
 //        }
 //    }
 //}
 //
 //@Composable
-//fun ShoppingCard(
-//    shoppingItem: ShoppingItem,
-//    onTodoCheckChange: (Boolean) -> Unit = {},
-//    onRemoveItem: () -> Unit = {},
-//    onEditItem: (ShoppingItem) -> Unit = {}
-//) {
-//    var expanded by rememberSaveable { mutableStateOf(false) }
-//
-//    Card(
-//        colors = CardDefaults.cardColors(
-//            containerColor = MaterialTheme.colorScheme.surfaceVariant,
-//        ),
-//        shape = RoundedCornerShape(20.dp),
-//        elevation = CardDefaults.cardElevation(
-//            defaultElevation = 10.dp
-//        ),
-//        modifier = Modifier.padding(5.dp)
-//    ) {
-//        Column(
-//            modifier = Modifier
-//                .padding(20.dp)
-//                .animateContentSize()
-//        ) {
-//
-//
-//            Row(
-//                modifier = Modifier
-//                    .fillMaxWidth(),
-//                verticalAlignment = Alignment.CenterVertically
-//            ) {
-//                /*Image(
-//                    painter = painterResource(id = todoItem.priority.getIcon()),
-//                    contentDescription = "Priority",
-//                    modifier = Modifier
-//                        .size(40.dp)
-//                        .padding(end = 10.dp)
-//                )*/
-//
-//
-//                Text("""${shoppingItem.name}
-//                    |${shoppingItem.price}""".trimMargin(), modifier = Modifier.fillMaxWidth(0.2f))
-//                Spacer(modifier = Modifier.fillMaxSize(0.55f))
-//
-//                Icon(
-//                    imageVector = Icons.Filled.Edit,
-//                    contentDescription = "Edit",
-//                    modifier = Modifier.clickable {
-//                        onEditItem(shoppingItem)
-//                    },
-//                    tint = Color.Blue
-//                )
-//                Spacer(modifier = Modifier.width(10.dp))
-//                Icon(
-//                    imageVector = Icons.Filled.Delete,
-//                    contentDescription = "Delete",
-//                    modifier = Modifier.clickable {
-//                        onRemoveItem()
-//                    },
-//                    tint = Color.Red
-//                )
-//                IconButton(onClick = { expanded = !expanded }) {
-//                    Icon(
-//                        imageVector = if (expanded) Icons.Filled.KeyboardArrowUp else
-//                            Icons.Filled.KeyboardArrowDown,
-//                        contentDescription = if (expanded) {
-//                            "Less"
-//                        } else {
-//                            "More"
-//                        }
-//                    )
-//                }
-//            }
-//
-//            if (expanded) {
-//                Text(text = shoppingItem.description)
-//            }
-//        }
-//    }
-//}
-//
-//@Composable
-//fun AddItemDialog(
-//    onDismissRequest: () -> Unit,
-//    onSubmit: (String, String, String) -> Unit
-//) {
-//    var title by remember { mutableStateOf("") }
-//    var description by remember { mutableStateOf("") }
-//    var price by remember { mutableStateOf("") }
-//    var category by remember { mutableStateOf("") }
-//
-//    AlertDialog(
-//        onDismissRequest = { onDismissRequest() },
-//        title = { Text("Add New Item") },
-//        text = {
-//            Column {
-//                TextField(
-//                    value = title,
-//                    onValueChange = { title = it },
-//                    label = { Text("Title") }
-//                )
-//                TextField(
-//                    value = description,
-//                    onValueChange = { description = it },
-//                    label = { Text("Description") }
-//                )
-//                TextField(
-//                    value = price,
-//                    onValueChange = { price = it },
-//                    label = { Text("Price") },
-//                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-//                )
-////                TextField(
-////                    value = category,
-////                    onValueChange = { category = it },
-////                    label = { Text("Category") }
-////                )
-//                SpinnerSample(
-//                    listOf("Food", "Electricity", "Sport"),
-//                    preselected = "Food",
-//                    onSelectionChanged = {  category = it },
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .padding(top = 10.dp)
-//                )
-//            }
-//        },
-//        confirmButton = {
-//            Button(
-//                onClick = {
-//                    onSubmit(title, description, price, category)
-//                    title = ""
-//                    description = ""
-//                    price = ""
-//                    category = ""
-//                }
-//            ) { Text("Add") }
-//        },
-//        dismissButton = {
-//            Button(onClick = { onDismissRequest() }) { Text("Cancel") }
-//        }
-//    )
-//}
-//
-//@Composable
-//fun OutlinedCard(
-//    modifier: Modifier = Modifier,
-//    content: @Composable () -> Unit
-//) {
-//    Card(
-//        modifier = modifier,
-//        shape = MaterialTheme.shapes.medium,
-//        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f))
-//    ) {
-//        content()
-//    }
-//}
-//
-//@Composable
-//fun SpinnerSample(
-//    list: List<String>,
-//    preselected: String,
-//    onSelectionChanged: (myData: String) -> Unit,
-//    modifier: Modifier = Modifier
-//) {
-//    var selected by remember { mutableStateOf(preselected) }
-//    var expanded by remember { mutableStateOf(false) } // initial value
-//    OutlinedCard(
-//        modifier = modifier.clickable {
-//            expanded = !expanded
-//        }
-//    ) {
-//        Row(
-//            horizontalArrangement = Arrangement.SpaceBetween,
-//            verticalAlignment = Alignment.Top,
-//        ) {
-//            Text(
-//                text = selected,
-//                modifier = Modifier
-//                    .weight(1f)
-//                    .padding(horizontal = 16.dp, vertical = 8.dp)
-//            )
-//            Icon(
-//                Icons.Outlined.ArrowDropDown, null, modifier =
-//                Modifier.padding(8.dp))
-//            DropdownMenu(
-//                expanded = expanded,
-//                onDismissRequest = { expanded = false },
-//                modifier = Modifier.fillMaxWidth()
-//            ) {
-//                list.forEach { listEntry ->
-//                    DropdownMenuItem(
-//                        onClick = {
-//                            selected = listEntry
-//                            expanded = false
-//                            onSelectionChanged(selected)
-//                        },
-//                        text = {
-//                            Text(
-//                                text = listEntry,
-//                                modifier = Modifier
-//                                    .fillMaxWidth()
-//                                    .align(Alignment.Start)
-//                            )
-//                        },
-//                    )
-//                }
-//            }
-//        }
-//
-//    }
-//}
+//fun EventCard(
+//    event:Event,
+//    onRemoveEvent () -> Unit 
+//  ){
+//   Card(
+//       modifier= Modifier.padding(5.dp),
+//       shape= RoundedCornerShape(8.dp),
+//       elevation= 4.dp
+//){
+//         ) {
+//        Column(modifier = Modifier.padding(16.dp)) {
+//            Text(event.title, style = MaterialTheme.typography.h6)
+//          Spacer(Modifier.height(4.dp))
+             Text(event.date, style = MaterialTheme.typography.body2)
+         Spacer(Modifier.height(4.dp))
+            Text(event.location, style = MaterialTheme.typography.body2)
+            IconButton(onClick = onRemoveEvent) {
+                Icon(Icons.Filled.Delete, contentDescription = "Delete Event")
+            }
+        }
+    }
+}
+@Composable
+fun AddEventDialog(
+    onDismissRequest: () -> Unit,
+    onSubmit: (String, String, String) -> Unit
+) {
+    var title by remember { mutableStateOf("") }
+    var date by remember { mutableStateOf("") }
+    var location by remember { mutableStateOf("") }
+
+    AlertDialog(
+        onDismissRequest = { onDismissRequest() },
+        title = { Text("Add New Event") },
+        text = {
+            Column {
+                TextField(
+                    value = title,
+                    onValueChange = { title = it },
+                    label = { Text("Title") }
+                )
+                TextField(
+                    value = date,
+                    onValueChange = { date = it },
+                    label = { Text("Date") }
+                )
+                TextField(
+                    value = location,
+                    onValueChange = { location = it },
+                    label = { Text("Location") }
+                )
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = {
+                    if (title.isNotEmpty() && date.isNotEmpty() && location.isNotEmpty()) {
+                        onSubmit(title, date, location)
+                        title = ""
+                        date = ""
+                        location = ""
+                        onDismissRequest()
+                    } else {
+                        errorMessage = "All fields must be filled"
+                        showError = true
+                    }
+                }
+            ) { Text("Add") }
+        },
+        dismissButton = {
+            Button(onClick = { onDismissRequest() }) { Text("Cancel") }
+        }
+    )
+}
+

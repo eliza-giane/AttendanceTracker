@@ -33,7 +33,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-//import androidx.navigation.NavController
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -50,7 +49,7 @@ fun LoginScreen(
 
     Box() {
         Text(
-            text = "AIT Forum",
+            text = "EVENT TRACKER",
             modifier = Modifier
                 .align(Alignment.TopCenter)
                 .padding(top = 50.dp),

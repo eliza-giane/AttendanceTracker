@@ -6,7 +6,7 @@ data class Post(
     var title: String = "",
     var date: String = "",
     var location: String = "",
-//    var guests: List<String> = List<String>("")
+    var guests: List<String> = mutableListOf()
 )
 
 data class PostWithId(

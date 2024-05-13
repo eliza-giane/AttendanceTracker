@@ -32,8 +32,9 @@ package hu.ait.attendancetracker.ui.screen
 //           } catch (e: Exception) {
 //              _uiState.value = EventUiState.Error(e.message ?: "Unknown error")
 //           }
-        }
-//  }
+//      }
+//
+//    }
 
 //       
 //    private suspend fun uploadImageToStorage(imageUri: Uri): String {

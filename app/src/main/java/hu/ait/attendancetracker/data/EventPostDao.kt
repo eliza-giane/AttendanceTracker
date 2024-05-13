@@ -9,36 +9,36 @@ package hu.ait.attendancetracker.data
 //
 //
 //@Dao
-//interface ShoppingItemDao {
+//interface EventDao {
 //
-//    @Query("SELECT * FROM shopping_items")
-//    fun getAllItems(): Flow<List<Post>>
+//    @Query("SELECT * FROM events")
+//    fun getAllEvents(): Flow<List<Event>>
 //
 //    @Insert
-//    suspend fun insertItem(item: Post)
+//    suspend fun insertEvent(item: Event)
 //
 //    @Delete
-//    suspend fun deleteItem(item: Post)
+//    suspend fun deleteEvent(item: Event)
 //
 //    @Update
-//    suspend fun updateItem(item: Post)
+//    suspend fun updateEvent(item: Evend)
 //
-//    @Query("DELETE FROM shopping_items")
-//    suspend fun deleteAllItems()
+//    @Query("DELETE FROM events")
+//    suspend fun deleteAllEvents()
 //
 //    // Calculate the total price of all items
-////    @Query("SELECT SUM(price) FROM shopping_items")
+////    @Query("SELECT SUM(price) FROM events")
 ////    fun getTotalPrice(): Flow<Float>
 //
-////    @Query("SELECT * FROM shopping_items WHERE id = :id")
-////    fun getItemByIdFlow(id: Int): Flow<Post>
+////    @Query("SELECT * FROM events WHERE id = :id")
+////    fun getEventByIdFlow(id: Int): Flow<Event>
 ////
-////    @Query("SELECT * FROM shopping_items WHERE title LIKE :title")
-////    fun searchItems(name: String): Flow<List<Post>>
+////    @Query("SELECT * FROM events WHERE name LIKE :name")
+////    fun searchEventsByName(name: String): Flow<List<Event>>
 ////
-////    @Query("SELECT * FROM shopping_items WHERE price BETWEEN :minPrice AND :maxPrice")
-////    fun filterItemsByPrice(minPrice: Float, maxPrice: Float): Flow<List<Post>>
+////    @Query("SELECT * FROM events WHERE date BETWEEN :startDate AND :endDate")
+////    fun filterEventsByDate(startDate: LocalDateTime, endDate: LocalDateTime): Flow<List<Event>>
 ////
-////    @Query("SELECT * FROM shopping_items WHERE location = :location")
-////    fun filterItemsByCategory(category: String): Flow<List<Post>>
+////    @Query("SELECT * FROM events WHERE location LIKE :location")
+////    fun filterEventsbyLocation(category: Location): Flow<List<Event>>
 //}

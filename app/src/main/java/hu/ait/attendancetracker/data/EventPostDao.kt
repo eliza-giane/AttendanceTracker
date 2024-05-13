@@ -8,32 +8,32 @@ package hu.ait.attendancetracker.data
 //
 //
 //@Dao
-//interface EventDao {
+//interface EventPostDao {
 //
-//    @Query("SELECT * FROM events")
-//    fun getAllEvents(): Flow<List<Event>>
+//    @Query("SELECT * FROM event_posts")
+//    fun getAllEventsPost(): Flow<List<EventPost>>
 //
 //    @Insert
-//    suspend fun insertEvent(item: Event)
+//    suspend fun insertEventPost(eventPost: EventPost)
 //
 //    @Delete
-////    suspend fun deleteEvent(item: Event)
+////    suspend fun deleteEventPost(eventPost: EventPost)
 ///
 ////    @Update
-////    suspend fun updateEvent(item: Evend)
+////    suspend fun updateEventPost(eventPost: EventPost)
 ////
-////   @Query("DELETE FROM events")
-////    suspend fun deleteAllEvents()
+////   @Query("DELETE FROM event_posts")
+////    suspend fun deleteAllEventsPosts()
 
-////    @Query("SELECT * FROM events WHERE id = :id")
-////    fun getEventByIdFlow(id: Int): Flow<Event>
+////    @Query("SELECT * FROM event_posts WHERE id = :id")
+////    fun getEventPostById(id: Int): Flow<EventPost>
 ////
-////    @Query("SELECT * FROM events WHERE name LIKE :name")
-////    fun searchEventsByName(name: String): Flow<List<Event>>
+////    @Query("SELECT * FROM event_posts WHERE name LIKE :name")
+////    fun searchEventPostsByName(name: String): Flow<List<EventPost>>
 ////
-////    @Query("SELECT * FROM events WHERE date BETWEEN :startDate AND :endDate")
-////    fun filterEventsByDate(startDate: LocalDateTime, endDate: LocalDateTime): Flow<List<Event>>
+////    @Query("SELECT * FROM event_posts WHERE date BETWEEN :startDate AND :endDate")
+////    fun filterEventPostsByDate(startDate: LocalDateTime, endDate: LocalDateTime): Flow<List<EventPost>>
 ////
-////    @Query("SELECT * FROM events WHERE location LIKE :location")
-////    fun filterEventsbyLocation(category: Location): Flow<List<Event>>
+////    @Query("SELECT * FROM event_posts WHERE location LIKE :location")
+////    fun filterEventPostssbyLocation(category: Location): Flow<List<EventPost>>
 //}

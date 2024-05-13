@@ -121,65 +121,65 @@ package hu.ait.attendancetracker.ui.screen
 //        Column(modifier = Modifier.padding(16.dp)) {
 //            Text(event.title, style = MaterialTheme.typography.h6)
 //          Spacer(Modifier.height(4.dp))
-             Text(event.date, style = MaterialTheme.typography.body2)
-         Spacer(Modifier.height(4.dp))
-            Text(event.location, style = MaterialTheme.typography.body2)
-            IconButton(onClick = onRemoveEvent) {
-                Icon(Icons.Filled.Delete, contentDescription = "Delete Event")
-            }
-        }
-    }
-}
-@Composable
-fun AddEventDialog(
-    onDismissRequest: () -> Unit,
-    onSubmit: (String, String, String) -> Unit
-) {
-    var title by remember { mutableStateOf("") }
-    var date by remember { mutableStateOf("") }
-    var location by remember { mutableStateOf("") }
-
-    AlertDialog(
-        onDismissRequest = { onDismissRequest() },
-        title = { Text("Add New Event") },
-        text = {
-            Column {
-                TextField(
-                    value = title,
-                    onValueChange = { title = it },
-                    label = { Text("Title") }
-                )
-                TextField(
-                    value = date,
-                    onValueChange = { date = it },
-                    label = { Text("Date") }
-                )
-                TextField(
-                    value = location,
-                    onValueChange = { location = it },
-                    label = { Text("Location") }
-                )
-            }
-        },
-        confirmButton = {
-            Button(
-                onClick = {
-                    if (title.isNotEmpty() && date.isNotEmpty() && location.isNotEmpty()) {
-                        onSubmit(title, date, location)
-                        title = ""
-                        date = ""
-                        location = ""
-                        onDismissRequest()
-                    } else {
-                        errorMessage = "All fields must be filled"
-                        showError = true
-                    }
-                }
-            ) { Text("Add") }
-        },
-        dismissButton = {
-            Button(onClick = { onDismissRequest() }) { Text("Cancel") }
-        }
-    )
-}
-
+//             Text(event.date, style = MaterialTheme.typography.body2)
+//         Spacer(Modifier.height(4.dp))
+//            Text(event.location, style = MaterialTheme.typography.body2)
+//            IconButton(onClick = onRemoveEvent) {
+//                Icon(Icons.Filled.Delete, contentDescription = "Delete Event")
+//            }
+//        }
+//    }
+//}
+//@Composable
+//fun AddEventDialog(
+//    onDismissRequest: () -> Unit,
+//    onSubmit: (String, String, String) -> Unit
+//) {
+//    var title by remember { mutableStateOf("") }
+//    var date by remember { mutableStateOf("") }
+//    var location by remember { mutableStateOf("") }
+//
+//    AlertDialog(
+//        onDismissRequest = { onDismissRequest() },
+//        title = { Text("Add New Event") },
+//        text = {
+//            Column {
+//                TextField(
+//                    value = title,
+//                    onValueChange = { title = it },
+//                    label = { Text("Title") }
+//                )
+//                TextField(
+//                    value = date,
+//                    onValueChange = { date = it },
+//                    label = { Text("Date") }
+//                )
+//                TextField(
+//                    value = location,
+//                    onValueChange = { location = it },
+//                    label = { Text("Location") }
+//                )
+//            }
+//        },
+//        confirmButton = {
+//            Button(
+//                onClick = {
+//                    if (title.isNotEmpty() && date.isNotEmpty() && location.isNotEmpty()) {
+//                        onSubmit(title, date, location)
+//                        title = ""
+//                        date = ""
+//                        location = ""
+//                        onDismissRequest()
+//                    } else {
+//                        errorMessage = "All fields must be filled"
+//                        showError = true
+//                    }
+//                }
+//            ) { Text("Add") }
+//        },
+//        dismissButton = {
+//            Button(onClick = { onDismissRequest() }) { Text("Cancel") }
+//        }
+//    )
+//}
+//

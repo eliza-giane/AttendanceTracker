@@ -27,7 +27,7 @@ class WritePostViewModel : ViewModel() {
     var writePostUiState: WritePostUiState by mutableStateOf(WritePostUiState.Init)
 
     fun uploadPost(
-        eventTitle: String, eventDate: String, eventLocation: String = ""
+        eventTitle: String, eventDate: String, eventLocation: String
     ) {
         writePostUiState = WritePostUiState.LoadingPostUpload
         val newPost = Post(

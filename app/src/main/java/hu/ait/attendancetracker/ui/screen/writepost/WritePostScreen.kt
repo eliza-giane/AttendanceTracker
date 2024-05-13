@@ -55,7 +55,7 @@ fun WritePostScreen(
                 eventDate = it
             }
         )
-        OutlinedTextField(value = eventDate,
+        OutlinedTextField(value = eventLocation,
             modifier = Modifier.fillMaxWidth(),
             label = { Text(text = "Event location") },
             onValueChange = {

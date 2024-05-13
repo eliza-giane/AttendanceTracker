@@ -19,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import hu.ait.attendancetracker.ui.navigation.Screen
 import hu.ait.attendancetracker.ui.screen.login.LoginScreen
 import hu.ait.attendancetracker.ui.screen.messages.MessagesScreen
+import hu.ait.attendancetracker.ui.screen.viewpost.ViewPostScreen
 import hu.ait.attendancetracker.ui.screen.writepost.WritePostScreen
 import hu.ait.attendancetracker.ui.theme.AttendanceTrackerTheme
 
@@ -68,6 +69,13 @@ fun NavGraph(
         }
         composable(Screen.WritePost.route) {
             WritePostScreen(
+                onNavigateWhenSuccess = {
+                    navController.navigate(Screen.Messages.route)
+                }
+            )
+        }
+        composable(Screen.WritePost.route) {
+            ViewPostScreen(
                 onNavigateWhenSuccess = {
                     navController.navigate(Screen.Messages.route)
                 }

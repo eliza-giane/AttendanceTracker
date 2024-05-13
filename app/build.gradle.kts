@@ -81,6 +81,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // Android Maps Compose composables for the Maps SDK for Android
+    implementation("com.google.maps.android:maps-compose:4.4.1")
+
 
     implementation("androidx.compose.material3:material3")
     implementation("com.google.android.datatransport:transport-runtime:3.3.0")

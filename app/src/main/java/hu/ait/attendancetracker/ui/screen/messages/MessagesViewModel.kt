@@ -35,7 +35,7 @@ class MessagesViewModel : ViewModel() {
                     trySend(response) // emit this value through the flow
                 }
         awaitClose { // when we navigate out from the screen,
-            // the flow stosp and we stop here the firebase listener
+            // the flow stop and we stop here the firebase listener
             snapshotListener.remove()
         }
     }

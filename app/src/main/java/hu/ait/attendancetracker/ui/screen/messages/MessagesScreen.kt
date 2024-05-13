@@ -39,7 +39,8 @@ import hu.ait.attendancetracker.data.Post
 @Composable
 fun MessagesScreen(
     messagesViewModel: MessagesViewModel = viewModel(),
-    onWritePost: ()->Unit = {}
+    onWritePost: ()->Unit = {},
+    onViewPost: ()->Unit = {}
 ) {
     val postListState = messagesViewModel.postsList().collectAsState(
         initial = MessagesUIState.Init)
@@ -91,7 +92,7 @@ fun MessagesScreen(
                 // show messages in a list...
                 LazyColumn() {
                     items((postListState.value as MessagesUIState.Success).postList){
-                        Text(text = it.post.title)
+//                        Text(text = it.post.title)
                         PostCard(post = it.post,
                             onRemoveItem = {
                                 messagesViewModel.deletePost(it.postId)
@@ -145,6 +146,10 @@ fun PostCard(
                     Text(
                         text = post.date,
                     )
+                    Text(
+                        text = post.location,
+                    )
+                    // display map here
                 }
                 Row(
                     verticalAlignment = Alignment.CenterVertically

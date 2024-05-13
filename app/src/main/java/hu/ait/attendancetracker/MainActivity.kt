@@ -60,6 +60,9 @@ fun NavGraph(
             MessagesScreen(
                 onWritePost = {
                     navController.navigate(Screen.WritePost.route)
+                },
+                onViewPost = {
+                    navController.navigate(Screen.ViewPost.route)
                 }
             )
         }

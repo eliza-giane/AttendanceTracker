@@ -17,27 +17,27 @@ package hu.ait.attendancetracker.ui.screen
 //import hu.ait.attendancetracker.data.Post
 //
 //@Composable
-//fun AddEditItemScreen(
-//    viewModel: MainViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
+//fun AddEditEventScreen(
+//    viewModel: EventViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
 //) {
 //
 //    val navController = androidx.navigation.compose.rememberNavController()
-//    val itemId = navController.previousBackStackEntry?.arguments?.getInt("itemId")
+//    val eventId = navController.previousBackStackEntry?.arguments?.getInt("eventId")
 //
-//    val item by viewModel.editableItem.collectAsState()
+//    val eventPost by viewModel.editableEventPost.collectAsState()
 //
 //    // Form fields state
-//    var title by rememberSaveable { mutableStateOf(item?.name ?: "") }
-//    var date by rememberSaveable { mutableStateOf(item?.description ?: "") }
-//    var price by rememberSaveable { mutableStateOf(item?.price?.toString() ?: "") }
-//    var location by rememberSaveable { mutableStateOf(item?.category ?: "") }
+//    var title by rememberSaveable { mutableStateOf(eventPost?.title ?: "") }
+//    var description by rememberSaveable { mutableStateOf(eventPost?.description ?: "") }
+//    var date by rememberSaveable { mutableStateOf(eventPost?.date ?: "") }
+//    var location by rememberSaveable { mutableStateOf(eventPost?.location ?: "") }
 //    var showError by remember { mutableStateOf(false) }
 //    var errorMessage by remember { mutableStateOf("") }
 //
 //    // Effect to load the item when itemId is not null
-//    LaunchedEffect(key1 = itemId) {
-//        itemId?.let {
-//            viewModel.loadItemById(it)
+//    LaunchedEffect(key1 = eventId) {
+//        eventId?.let {
+//            viewModel.loadEventById(it)
 //        }
 //    }
 //
@@ -46,29 +46,29 @@ package hu.ait.attendancetracker.ui.screen
 //    // Button to save or update an item
 //    Button(
 //        onClick = {
-//            if (title.isBlank() || date.isBlank() || price.isBlank() || location.isBlank()) {
+//            if (title.isBlank() || description.isBlank() || price.isBlank() || location.isBlank()) {
 //                errorMessage = "Please fill in all fields."
 //                showError = true
 //            } else {
 //                try {
 //                    val priceValue = price.toDouble()
-//                    if (itemId == null) {
+//                    if (eventId == null) {
 //                        // Adding a new item
-//                        val newItem = Post(
+//                        val newEvent = EventPost(
 //                            title = title,
 //                            date = date,
 //                            location = location
 //                        )
-//                        viewModel.addItem(newItem)
+//                        viewModel.addEvent(newEvent)
 //                    } else {
 //                        // Updating an existing item
-//                        val updateItem = item!!.copy(
-//                            name = title,
-//                            description = date,
-//                            price = priceValue.toFloat(),
-//                            category = location
+//                        val updateEvent = eventPost!!.copy(
+//                            tile = title,
+//                            description = description,
+//                            date = date,
+//                            location = location
 //                        )
-//                        viewModel.updateItem(updateItem)
+//                        viewModel.updateEvent(updateEvent)
 //                    }
 //                    navController.popBackStack()
 //                } catch (e: NumberFormatException) {

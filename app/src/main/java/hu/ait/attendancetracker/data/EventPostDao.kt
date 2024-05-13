@@ -4,7 +4,6 @@ package hu.ait.attendancetracker.data
 //import androidx.lifecycle.LiveData
 //import androidx.room.Dao
 //import androidx.room.Query
-//import hu.ait.data.ShoppingItem
 //import kotlinx.coroutines.flow.Flow
 //
 //
@@ -18,18 +17,14 @@ package hu.ait.attendancetracker.data
 //    suspend fun insertEvent(item: Event)
 //
 //    @Delete
-//    suspend fun deleteEvent(item: Event)
-//
-//    @Update
-//    suspend fun updateEvent(item: Evend)
-//
-//    @Query("DELETE FROM events")
-//    suspend fun deleteAllEvents()
-//
-//    // Calculate the total price of all items
-////    @Query("SELECT SUM(price) FROM events")
-////    fun getTotalPrice(): Flow<Float>
-//
+////    suspend fun deleteEvent(item: Event)
+///
+////    @Update
+////    suspend fun updateEvent(item: Evend)
+////
+////   @Query("DELETE FROM events")
+////    suspend fun deleteAllEvents()
+
 ////    @Query("SELECT * FROM events WHERE id = :id")
 ////    fun getEventByIdFlow(id: Int): Flow<Event>
 ////

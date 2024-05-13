@@ -61,10 +61,10 @@ fun NavGraph(
             MessagesScreen(
                 onWritePost = {
                     navController.navigate(Screen.WritePost.route)
-                },
-                onViewPost = {
-                    navController.navigate(Screen.ViewPost.route)
                 }
+//                onViewPost = {
+//                    navController.navigate(Screen.ViewPost.route)
+//                }
             )
         }
         composable(Screen.WritePost.route) {

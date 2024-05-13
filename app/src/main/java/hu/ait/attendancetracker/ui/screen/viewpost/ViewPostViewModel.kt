@@ -4,17 +4,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import hu.ait.attendancetracker.data.Post
 
 class ViewPostViewModel : ViewModel() {
 
     var viewPostUiState: ViewPostUiState by mutableStateOf(ViewPostUiState.Init)
 
     fun signUp(
-        guest: String,
-        postKey: String
+        guest: String
     ){
 //        FirebaseFirestore.getInstance().collection(
 //            "posts"

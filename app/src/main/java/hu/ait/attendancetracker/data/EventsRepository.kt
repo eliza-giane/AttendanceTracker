@@ -7,48 +7,44 @@ package hu.ait.attendancetracker.data
 //import kotlinx.coroutines.flow.Flow
 //import javax.inject.Inject
 //
-//class ShoppingListRepository @Inject constructor(
-//    private val shoppingItemDao: ShoppingItemDao
+//class EventPostRepository @Inject constructor(
+//    private val eventPostDao: EventPostDao
 //) {
 //
-//    fun getAllItems(): Flow<List<ShoppingItem>> {
-//        return shoppingItemDao.getAllItems()
+//    fun getAllEventPosts(): Flow<List<EventPost>> {
+//        return eventPostDao.getAllEventPosts()
 //    }
 //
 //
-//    suspend fun insertItem(item: ShoppingItem) {
-//        shoppingItemDao.insertItem(item)
+//    suspend fun insertEventPost(eventPost: EventPost) {
+//        eventPostDao.insertEventPost(eventPost)
 //    }
 //
-//    suspend fun deleteItem(item: ShoppingItem) {
-//        shoppingItemDao.deleteItem(item)
+//    suspend fun deleteEventPost(eventPost: EventPost) {
+//        eventPostDao.deleteEventPost(eventPost)
 //    }
 //
-//    suspend fun updateItem(item: ShoppingItem) {
-//        shoppingItemDao.updateItem(item)
+//    suspend fun updateEventPost(eventPost: EventPost) {
+//        eventPostDao.updateEventPost(eventPost)
 //    }
 //
-//    suspend fun deleteAllItems() {
-//        shoppingItemDao.deleteAllItems()
+//    suspend fun deleteAllEventPosts() {
+//        eventPostDao.deleteAllEventPosts()
 //    }
 //
-//    fun getTotalPrice(): Flow<Float> {
-//        return shoppingItemDao.getTotalPrice()
+//    fun getEventPostById(id:Int): Flow<EventPost> {
+//        return eventPostDao.getEventPostById(id)
 //    }
 //
-//    fun getItemByIdFlow(id: Int): Flow<ShoppingItem> {
-//        return shoppingItemDao.getItemByIdFlow(id)
+//    fun searchEventPostsByName(name: String): Flow<List<EventPost>> {
+//        return eventPostDao.searchEventPostsByName(name)
 //    }
 //
-//    fun searchItems(name: String): Flow<List<ShoppingItem>> {
-//        return shoppingItemDao.searchItems(name)
+//    fun filterEventPostsByDate(startDate: LocalDateTime, endDate: LocalDateTime): Flow<List<EventPost>> {
+//        return eventPostDao.filterEventPostsByDate(startDate, endDate)
 //    }
 //
-//    fun filterItemsByPrice(minPrice: Float, maxPrice: Float): Flow<List<ShoppingItem>> {
-//        return shoppingItemDao.filterItemsByPrice(minPrice, maxPrice)
-//    }
-//
-//    fun filterItemsByCategory(category: String): Flow<List<ShoppingItem>> {
-//        return shoppingItemDao.filterItemsByCategory(category)
+//    fun filterEventPostsByLocation(location: String): Flow<List<EventPost>> {
+//        return eventPostDao.filterEventPostsByLocation(location)
 //    }
 //}

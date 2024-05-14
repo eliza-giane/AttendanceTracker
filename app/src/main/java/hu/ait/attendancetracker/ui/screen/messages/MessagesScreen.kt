@@ -15,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.twotone.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -107,10 +108,11 @@ fun MessagesScreen(
                 is MessagesUIState.Loading -> CircularProgressIndicator()
                 is MessagesUIState.Success -> LazyColumn {
                     items(uiState.postList) { post ->
-                        PostCard(post = post.post,
+                        PostCard(
+                            post = post.post,
                             onRemoveItem = { messagesViewModel.deletePost(post.postId) },
                             currentUserId = FirebaseAuth.getInstance().uid!!,
-//                            onViewPost = onViewPost
+                            onUpdateGuests = { messagesViewModel.signUp(post.post,post.post.author) }
                         )
                     }
                 }
@@ -125,7 +127,7 @@ fun PostCard(
     post: Post,
     onRemoveItem: () -> Unit = {},
     currentUserId: String = "",
-    onUpdateGuests: (List<String>) -> Unit = {} // Callback to update the guest list in the main data model
+    onUpdateGuests: () -> Unit = {}
 ) {
     var textState by remember { mutableStateOf("") }
 
@@ -150,6 +152,18 @@ fun PostCard(
                     Text(text = post.title)
                     Text(text = post.date)
                     Text(text = post.location)
+
+
+                    Button(
+                        onClick = onUpdateGuests,
+                        modifier = Modifier.clickable(onClick = onUpdateGuests),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.primary
+                        ),
+                        shape = RoundedCornerShape(16.dp)
+                    ) {
+                        Text("Sign Up", color = Color.White)
+                    }
                 }
                 Row(
                     verticalAlignment = Alignment.CenterVertically
@@ -173,7 +187,9 @@ fun PostCard(
 
             // Guests list with checkboxes
             Text(text = "Guests:")
-            Column {
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
                 for (guest in post.guests) {
                     val guest = guest
                     var isChecked by remember { mutableStateOf(false) }
@@ -183,11 +199,23 @@ fun PostCard(
                             .fillMaxWidth()
                             .padding(horizontal = 10.dp, vertical = 4.dp)
                     ) {
-                        Checkbox(
-                            checked = isChecked,
-                            onCheckedChange = { isChecked = it }
-                        )
-                        Text(text = guest, modifier = Modifier.padding(start = 8.dp))
+
+                        val postAuthorUID = post.uid
+
+                        if (currentUserId == postAuthorUID) {
+                            Checkbox(
+                                checked = isChecked,
+                                onCheckedChange = { isChecked = it }
+                            )
+                            Text(text = guest, modifier = Modifier.padding(start = 8.dp))
+                        } else {
+                            Checkbox(
+                                checked = isChecked,
+                                onCheckedChange = null
+                            )
+                            Text(text = guest, modifier = Modifier.padding(start = 8.dp))
+                        }
+
                     }
                 }
             }

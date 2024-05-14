@@ -46,7 +46,9 @@ class MessagesViewModel : ViewModel() {
         ).document(postKey).delete()
     }
 
-
+    fun signUp(post: Post, name: String) {
+        post.addGuest(name)
+    }
 }
 
 sealed interface MessagesUIState {

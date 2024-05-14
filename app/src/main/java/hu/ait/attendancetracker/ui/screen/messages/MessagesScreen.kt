@@ -173,13 +173,15 @@ fun PostCard(
 
             // Guests list with checkboxes
             Text(text = "Guests:")
-            LazyColumn {
-                items(post.guests.size) { index ->
-                    val guest = post.guests[index]
+            Column {
+                for (guest in post.guests) {
+                    val guest = guest
                     var isChecked by remember { mutableStateOf(false) }
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.fillMaxWidth().padding(horizontal = 10.dp, vertical = 4.dp)
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 10.dp, vertical = 4.dp)
                     ) {
                         Checkbox(
                             checked = isChecked,
@@ -187,38 +189,6 @@ fun PostCard(
                         )
                         Text(text = guest, modifier = Modifier.padding(start = 8.dp))
                     }
-                }
-            }
-
-            // Input and button for adding new guests
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(8.dp)
-            ) {
-                TextField(
-                    value = textState,
-                    onValueChange = { textState = it },
-                    label = { Text("Enter guest name") },
-                    singleLine = true,
-                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-                    keyboardActions = KeyboardActions(onDone = {
-                        if (textState.isNotBlank()) {
-                            onUpdateGuests(post.guests + textState)
-                            textState = "" // Reset the input field after adding
-                        }
-                    }),
-                    modifier = Modifier.weight(1f)
-                )
-                Button(
-                    onClick = {
-                        if (textState.isNotBlank()) {
-                            onUpdateGuests(post.guests + textState)
-                            textState = "" // Reset the input field after adding
-                        }
-                    },
-                    modifier = Modifier.padding(start = 8.dp)
-                ) {
-                    Text("Add")
                 }
             }
         }
